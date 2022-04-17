@@ -267,6 +267,13 @@ def pubsub_ajax(host, port, db):
            mimetype="text/event-stream")
 
 
+@app.template_filter('safe_str')
+def safe_str(s):
+    if isinstance(s, bytes):
+        s = s.decode('utf8')
+    return s
+
+
 @app.template_filter('urlsafe_base64')
 def urlsafe_base64_encode(s):
     if type(s) == 'Markup':

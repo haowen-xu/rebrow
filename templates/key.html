@@ -5,7 +5,7 @@
 		<li><a href="/">Home</a></li>
 		<li><a href="../..">{{ host}}:{{port}} DB {{ db }}</a></li>
 		<li><a href="..">Keys</a></li>
-		<li class="active">{{ key }}</li>
+		<li class="active">{{ key|safe_str }}</li>
 	</ol>
 
 	<h1>Key: {{ key }}</h1>
@@ -14,7 +14,7 @@
 		<tbody>
 			<tr>
 				<th>Key</th>
-				<td><input type="text" value="{{ key }}" readonly="readonly" style="border: none; width: 100%; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;" /></td>
+				<td><input type="text" value="{{ key|safe_str }}" readonly="readonly" style="border: none; width: 100%; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;" /></td>
 			</tr>
 			<tr>
 				<th>Type</th>
@@ -47,14 +47,14 @@
 	{% if type == "string" %}
 
 		<h2>String Value</h2>
-		<code>{{ value }}</code>
+		<code>{{ value|safe_str }}</code>
 
 	{% elif type == "list" %}
 
 		<h2>Values</h2>
 		<ol>
 		{% for item in value %}
-			<li><code>{{ item }}</code></li>
+			<li><code>{{ item|safe_str }}</code></li>
 		{% endfor %}
 		</ol>
 
@@ -63,7 +63,7 @@
 		<h2>Values</h2>
 		<ul>
 		{% for item in value|sort %}
-			<li><code>{{ item }}</code></li>
+			<li><code>{{ item|safe_str }}</code></li>
 		{% endfor %}
 		</ul>
 
@@ -82,8 +82,8 @@
 		{% for item in value|dictsort %}
 			<tr>
 				<td></td>
-				<td><code>{{ item[0] }}</code></td>
-				<td><code>{{ item[1] }}</code></td>
+				<td><code>{{ item[0]|safe_str }}</code></td>
+				<td><code>{{ item[1]|safe_str }}</code></td>
 			</tr>
 		{% endfor %}
 			</tbody>
@@ -104,8 +104,8 @@
 		{% for item in value %}
 			<tr>
 				<td>{{ loop.index0 }}</td>
-				<td><code>{{ item[1] }}</code></td>
-				<td><code>{{ item[0] }}</code></td>
+				<td><code>{{ item[1]|safe_str }}</code></td>
+				<td><code>{{ item[0]|safe_str }}</code></td>
 			</tr>
 		{% endfor %}
 			</tbody>
